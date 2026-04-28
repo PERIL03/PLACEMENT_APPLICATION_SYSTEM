@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Node
+frontend/node_modules
+frontend/dist
+
+# Java
+backend/target
+
+# IDE
+.vscode
+.idea
+
+# Logs
+*.log
+
+# Local MySQL runtime data
+.local-mysql/

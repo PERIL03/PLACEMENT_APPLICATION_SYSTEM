@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap");
+
+:root {
+  --bg-1: #f4efe6;
+  --bg-2: #dce8f4;
+  --ink: #11243a;
+  --accent: #0b7a75;
+  --card: #ffffffd9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top right, var(--bg-2), var(--bg-1) 65%);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.hero {
+  border-left: 8px solid var(--accent);
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.subtitle {
+  max-width: 65ch;
+}
+
+.session-info {
+  margin: 0.8rem 0;
+}
+
+.panel {
+  background: var(--card);
+  backdrop-filter: blur(4px);
+  border: 1px solid #ffffff;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 10px 20px rgba(17, 36, 58, 0.1);
+  animation: rise 0.45s ease;
+}
+
+.student-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.7rem 0 1rem;
+  font-weight: 500;
+}
+
+.student-picker select {
+  width: min(380px, 100%);
+  border: 1px solid #bfd1de;
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  background: #fff;
+}
+
+.auth-panel {
+  max-width: 480px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.auth-form input {
+  border: 1px solid #bfd1de;
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+.demo-accounts {
+  margin-top: 0.8rem;
+  background: #f2f8fb;
+  border: 1px solid #d6e4ea;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+}
+
+.demo-accounts p {
+  margin: 0.35rem 0;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.8rem;
+}
+
+.student-card {
+  border: 1px solid #d6e4ea;
+  border-radius: 12px;
+  padding: 0.9rem;
+  background: #fff;
+}
+
+.student-card p {
+  margin: 0.4rem 0;
+}
+
+.apply-btn {
+  margin-top: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.55rem 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apply-btn:disabled {
+  background: #8da8a6;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  margin-left: 0.5rem;
+  background: #355f8a;
+}
+
+.mini-btn {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.history-btn {
+  background: #5a5f66;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.interview-form {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+
+.interview-form input,
+.interview-form select {
+  border: 1px solid #bfd1de;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+}
+
+.history-block {
+  margin-top: 0.6rem;
+  border-top: 1px dashed #c5d2db;
+  padding-top: 0.5rem;
+}
+
+.history-line {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.success-text {
+  color: #096940;
+  margin-top: 0.8rem;
+}
+
+.error-text {
+  color: #b33232;
+  margin-top: 0.8rem;
+}
+
+.application-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.8rem;
+}
+
+.application-item {
+  border: 1px solid #d6e4ea;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.9rem;
+}
+
+.application-item p {
+  margin: 0.4rem 0;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
