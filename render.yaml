@@ -24,7 +24,7 @@ services:
       - key: CORS_ALLOWED_ORIGINS
         sync: false
 
-  - type: static
+  - type: static_site
     name: placement-frontend
     runtime: static
     plan: free
