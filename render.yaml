@@ -1,10 +1,9 @@
 services:
   - type: web
     name: placement-backend
-    runtime: java
+    runtime: docker
     plan: free
-    buildCommand: mvn -f backend/pom.xml clean package
-    startCommand: java -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+    dockerfilePath: backend/Dockerfile
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
