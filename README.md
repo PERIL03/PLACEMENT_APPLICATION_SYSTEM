@@ -3,14 +3,14 @@
 A starter full-stack project built with:
 - React (frontend)
 - Spring Boot (backend)
-- MySQL (database)
+- PostgreSQL (database)
 
 ## Project Structure
 
 - `frontend` React app (Vite)
 - `backend` Spring Boot REST API
-- `scripts/start-local-mysql.sh` local MySQL starter script
-- `scripts/stop-local-mysql.sh` local MySQL stop script
+- `scripts/start-local-mysql.sh` local MySQL starter script (legacy)
+- `scripts/stop-local-mysql.sh` local MySQL stop script (legacy)
 
 ## What is implemented right now
 
@@ -54,13 +54,11 @@ A starter full-stack project built with:
 - Java 21
 - Maven 3.9+
 - Node.js 20+
-- MySQL binaries available in PATH (`mysqld` and `mysql`)
+- PostgreSQL 15+ (local dev)
 
 ## Run the project
 
-1. Start local MySQL (no Docker)
-
-./scripts/start-local-mysql.sh
+1. Start local PostgreSQL
 
 2. Start backend
 
@@ -75,22 +73,41 @@ npm run dev
 
 Open: http://localhost:5173
 
+## Production notes
+
+- Set `SPRING_PROFILES_ACTIVE=prod` for production.
+- Provide `JWT_SECRET` and `CORS_ALLOWED_ORIGINS` environment variables.
+- Provide DB environment variables as needed: `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`.
+- Flyway runs schema migrations in production; demo seed data is disabled.
+
+## Render deployment (fastest, free)
+
+This repo includes a Render blueprint in [render.yaml](render.yaml). Pair it with a free PostgreSQL database from Neon.
+
+1. Create a Neon database (free tier) and note the host, DB name, username, and password.
+2. In Render, use "New > Blueprint" and select this repo.
+3. Set backend env vars:
+  - `DB_HOST`, `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`
+  - `JWT_SECRET` (strong random string)
+  - `CORS_ALLOWED_ORIGINS` (set to the Render frontend URL)
+4. Set frontend env var:
+  - `VITE_API_BASE` (set to the Render backend URL + `/api/v1`)
+5. Deploy both services.
+
 ## Troubleshooting
 
-If backend fails with messages like `Unable to determine Dialect without JDBC metadata` or `BUILD FAILURE` on `spring-boot:run`, MySQL is not reachable or credentials are wrong.
+If backend fails with messages like `Unable to determine Dialect without JDBC metadata` or `BUILD FAILURE` on `spring-boot:run`, PostgreSQL is not reachable or credentials are wrong.
 
-1. Re-run local DB starter:
-
-./scripts/start-local-mysql.sh
+1. Re-check local DB status and credentials.
 
 2. Re-run backend:
 
 cd backend
 mvn spring-boot:run
 
-3. If you already have your own MySQL instance, set environment variables before starting backend:
+3. If you already have your own PostgreSQL instance, set environment variables before starting backend:
 
-DB_HOST=127.0.0.1 DB_PORT=3306 DB_NAME=placement_db DB_USERNAME=your_user DB_PASSWORD=your_password mvn spring-boot:run
+DB_HOST=127.0.0.1 DB_PORT=5432 DB_NAME=placement_db DB_USERNAME=your_user DB_PASSWORD=your_password mvn spring-boot:run
 
 ## Next roadmap
 

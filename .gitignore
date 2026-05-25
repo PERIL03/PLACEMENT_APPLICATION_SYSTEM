@@ -12,6 +12,11 @@ backend/target
 .vscode
 .idea
 
+# Local tooling
+.neon
+.agents/
+skills-lock.json
+
 # Logs
 *.log
 
