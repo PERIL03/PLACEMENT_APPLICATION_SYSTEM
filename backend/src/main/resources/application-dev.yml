@@ -15,3 +15,6 @@ spring:
 security:
   jwt:
     secret: ${JWT_SECRET:YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWJjZGVmZ2g=}
+
+app:
+  seed-demo: true
