@@ -27,6 +27,19 @@ public class UserDataInitializer {
             createUserIfMissing(appUserRepository, passwordEncoder, "officer1", "officer123", UserRole.PLACEMENT_OFFICER);
             createUserIfMissing(appUserRepository, passwordEncoder, "recruiter1", "recruiter123", UserRole.RECRUITER);
 
+            ensureStudentProfile(studentRepository,
+                    "Aarav Mehta",
+                    "aarav.m@college.edu",
+                    "Computer Science",
+                    2026,
+                    8.7);
+            ensureStudentProfile(studentRepository,
+                    "Riya Sharma",
+                    "riya.s@college.edu",
+                    "Information Technology",
+                    2025,
+                    9.1);
+
             mapStudentProfile(appUserRepository, studentRepository, "student1", "aarav.m@college.edu");
             mapStudentProfile(appUserRepository, studentRepository, "student2", "riya.s@college.edu");
         };
@@ -60,15 +73,35 @@ public class UserDataInitializer {
                 .orElseThrow(() -> new IllegalStateException("User not found for mapping: " + username));
 
         List<Student> candidates = studentRepository.findAllByEmailOrderByIdAsc(studentEmail);
-        if (candidates.isEmpty()) {
+        Student student = candidates.isEmpty() ? null : candidates.getFirst();
+        if (student == null) {
             throw new IllegalStateException("Student not found for mapping: " + studentEmail);
         }
-
-        Student student = candidates.getFirst();
 
         if (student.getUser() == null || !student.getUser().getId().equals(user.getId())) {
             student.setUser(user);
             studentRepository.save(student);
         }
+    }
+
+    private void ensureStudentProfile(
+            StudentRepository studentRepository,
+            String fullName,
+            String email,
+            String branch,
+            Integer graduationYear,
+            Double cgpa) {
+
+        if (studentRepository.findByEmail(email).isPresent()) {
+            return;
+        }
+
+        Student student = new Student();
+        student.setFullName(fullName);
+        student.setEmail(email);
+        student.setBranch(branch);
+        student.setGraduationYear(graduationYear);
+        student.setCgpa(cgpa);
+        studentRepository.save(student);
     }
 }
